@@ -177,7 +177,7 @@ bot.onText(/./, async (msg: Bot.Message) => {
                 break;
             case "wantmore":
                 await bot.sendMessage(msg.from.id, db.get('wantmore'));
-                await wait(3 * 60);
+                await wait(1.5 * 60);
                 await bot.sendMessage(msg.from.id, 'Готов попробовать?',getKeyboard(['Давай попробуем)', 'Нет, пока что это не для меня!']));
                 break;
             case "notforme":

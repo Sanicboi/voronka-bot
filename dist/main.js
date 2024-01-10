@@ -177,7 +177,7 @@ bot.onText(/./, (msg) => __awaiter(void 0, void 0, void 0, function* () {
                 break;
             case "wantmore":
                 yield bot.sendMessage(msg.from.id, db.get('wantmore'));
-                yield wait(3 * 60);
+                yield wait(1.5 * 60);
                 yield bot.sendMessage(msg.from.id, 'Готов попробовать?', getKeyboard(['Давай попробуем)', 'Нет, пока что это не для меня!']));
                 break;
             case "notforme":
