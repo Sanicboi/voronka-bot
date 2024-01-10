@@ -15,7 +15,7 @@ exports.VALID_KEYS = [
     'intro1', 'intro2', 'intro3',
     'case', 'feedbacks1', 'feedbacks2',
     'letstry', 'notready', 'question',
-    'ready', 'reasons1', 'reasons2', 'okay', 'reasons3', 'stillnotready', 'wantmore', 'letsgo', 'notforme'
+    'ready', 'reasons1', 'reasons2', 'okay', 'reasons3', 'stillnotready', 'wantmore', 'letsgo', 'notforme', 'feedbacks3'
 ];
 class TextDB {
     constructor() {

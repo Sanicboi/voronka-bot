@@ -65,7 +65,10 @@ bot.onText(/^[A-Za-zА-Яа-яЁё]*$/, (msg) => __awaiter(void 0, void 0, void 
             yield LSV_1.LSVParser.append('main.lsv', msg.from.id, name);
             yield bot.sendMessage(msg.from.id, 'Очень рада знакомству 🩷🩷');
             yield wait(1);
-            yield bot.sendMessage(msg.from.id, db.get('question'), getKeyboard(['Есть такое 😢']));
+            yield bot.sendMessage(msg.from.id, db.get('question'), {
+                reply_markup: getKeyboard(['Есть такое 😢']).reply_markup,
+                parse_mode: 'MarkdownV2'
+            });
             // end;
             return;
         }
@@ -122,15 +125,26 @@ bot.onText(/./, (msg) => __awaiter(void 0, void 0, void 0, function* () {
                 yield bot.sendMediaGroup(msg.from.id, images);
                 yield wait(5);
                 yield bot.sendMessage(msg.from.id, db.get('feedbacks2'), {
+                    parse_mode: 'MarkdownV2'
+                });
+                yield bot.sendMessage(msg.from.id, db.get('feedbacks3'), {
                     reply_markup: getKeyboard(['Круто!)']).reply_markup,
                     parse_mode: 'MarkdownV2'
                 });
                 break;
             case "case":
-                yield bot.sendMessage(msg.from.id, db.get('case'), getKeyboard(['Блин, круто!😭']));
+                const img = yield imageReader_1.ImageReader.read('12.jpg');
+                yield bot.sendPhoto(msg.from.id, img, {
+                    reply_markup: getKeyboard(['Блин, круто!😭']).reply_markup,
+                    caption: db.get('case'),
+                    parse_mode: 'MarkdownV2'
+                });
                 break;
             case "reasons1":
-                yield bot.sendMessage(msg.from.id, db.get('reasons1'), getKeyboard(['Хочу туда😌']));
+                yield bot.sendMessage(msg.from.id, db.get('reasons1'), {
+                    reply_markup: getKeyboard(['Хочу туда😌']).reply_markup,
+                    parse_mode: 'MarkdownV2'
+                });
                 break;
             case "reasons2":
                 yield bot.sendMessage(msg.from.id, db.get('okay'));
@@ -147,7 +161,10 @@ bot.onText(/./, (msg) => __awaiter(void 0, void 0, void 0, function* () {
                 yield wait(1);
                 yield bot.sendMessage(msg.from.id, db.get('reasons2'));
                 yield wait(5);
-                yield bot.sendMessage(msg.from.id, db.get('reasons3'), getKeyboard(['Хочу прогноз', 'Нет, я не готов к переменам']));
+                yield bot.sendMessage(msg.from.id, db.get('reasons3'), {
+                    reply_markup: getKeyboard(['Хочу прогноз', 'Нет, я не готов к переменам']).reply_markup,
+                    parse_mode: 'MarkdownV2'
+                });
                 break;
             case "letstry":
                 yield bot.sendMessage(msg.from.id, db.get('letstry'));
@@ -159,7 +176,9 @@ bot.onText(/./, (msg) => __awaiter(void 0, void 0, void 0, function* () {
                 yield bot.sendMessage(msg.from.id, db.get('stillnotready'));
                 break;
             case "wantmore":
-                yield bot.sendMessage(msg.from.id, db.get('wantmore'), getKeyboard(['Давай попробуем)', 'Нет, пока что это не для меня!']));
+                yield bot.sendMessage(msg.from.id, db.get('wantmore'));
+                yield wait(3 * 60);
+                yield bot.sendMessage(msg.from.id, 'Готов попробовать?', getKeyboard(['Давай попробуем)', 'Нет, пока что это не для меня!']));
                 break;
             case "notforme":
                 yield bot.sendMessage(msg.from.id, db.get('notforme'));

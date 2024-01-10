@@ -3,13 +3,13 @@ export type VALID_KEY_T =
     'intro1' | 'intro2' | 'intro3' |
     'case' | 'feedbacks1' | 'feedbacks2' |
     'letstry' | 'notready' | 'question' |
-    'ready' | 'reasons1' | 'reasons2' | 'letsgo' | 'okay' | 'reasons3' | 'stillnotready' | 'wantmore' | 'notforme';
+    'ready' | 'reasons1' | 'reasons2' | 'letsgo' | 'okay' | 'reasons3' | 'stillnotready' | 'wantmore' | 'notforme' | 'feedbacks3';
 
 export const VALID_KEYS: VALID_KEY_T[] = [
     'intro1', 'intro2','intro3',
     'case', 'feedbacks1', 'feedbacks2',
     'letstry', 'notready', 'question',
-    'ready', 'reasons1', 'reasons2', 'okay', 'reasons3', 'stillnotready', 'wantmore', 'letsgo', 'notforme'
+    'ready', 'reasons1', 'reasons2', 'okay', 'reasons3', 'stillnotready', 'wantmore', 'letsgo', 'notforme', 'feedbacks3'
 ];
 
 export class TextDB {

@@ -57,7 +57,10 @@ bot.onText(/^[A-Za-zА-Яа-яЁё]*$/, async (msg: Bot.Message) => {
             await LSVParser.append('main.lsv', msg.from.id, name);
             await bot.sendMessage(msg.from.id, 'Очень рада знакомству 🩷🩷');
             await wait(1);
-            await bot.sendMessage(msg.from.id, db.get('question'), getKeyboard(['Есть такое 😢']));
+            await bot.sendMessage(msg.from.id, db.get('question'), {
+                reply_markup: getKeyboard(['Есть такое 😢']).reply_markup,
+                parse_mode: 'MarkdownV2'
+            })
 
             // end;
             return;
@@ -120,15 +123,27 @@ bot.onText(/./, async (msg: Bot.Message) => {
                 await bot.sendMediaGroup(msg.from.id, images);
                 await wait(5);
                 await bot.sendMessage(msg.from.id, db.get('feedbacks2'), {
+                    parse_mode: 'MarkdownV2'
+                });
+                await bot.sendMessage(msg.from.id, db.get('feedbacks3'), {
                     reply_markup: getKeyboard(['Круто!)']).reply_markup, 
                     parse_mode: 'MarkdownV2'
                 });
                 break;
             case "case":
-                await bot.sendMessage(msg.from.id, db.get('case'), getKeyboard(['Блин, круто!😭']));
+                const img = await ImageReader.read('12.jpg');
+                await bot.sendPhoto(msg.from.id, img, {
+                    reply_markup: getKeyboard(['Блин, круто!😭']).reply_markup,
+                    caption: db.get('case'),
+                    parse_mode: 'MarkdownV2'
+                });
                 break;
             case "reasons1":
-                await bot.sendMessage(msg.from.id, db.get('reasons1'), getKeyboard(['Хочу туда😌']));
+                await bot.sendMessage(msg.from.id, db.get('reasons1'), 
+                {
+                    reply_markup: getKeyboard(['Хочу туда😌']).reply_markup,
+                    parse_mode: 'MarkdownV2'
+                });
                 break;
             case "reasons2":
                 await bot.sendMessage(msg.from.id, db.get('okay'));
@@ -145,7 +160,11 @@ bot.onText(/./, async (msg: Bot.Message) => {
                 await wait(1);
                 await bot.sendMessage(msg.from.id, db.get('reasons2'));
                 await wait(5);
-                await bot.sendMessage(msg.from.id, db.get('reasons3'), getKeyboard(['Хочу прогноз', 'Нет, я не готов к переменам']));
+                await bot.sendMessage(msg.from.id, db.get('reasons3'), 
+                {
+                    reply_markup: getKeyboard(['Хочу прогноз', 'Нет, я не готов к переменам']).reply_markup,
+                    parse_mode: 'MarkdownV2'
+                });
                 break;
             case "letstry":
                 await bot.sendMessage(msg.from.id, db.get('letstry'));
@@ -157,12 +176,12 @@ bot.onText(/./, async (msg: Bot.Message) => {
                 await bot.sendMessage(msg.from.id, db.get('stillnotready'));
                 break;
             case "wantmore":
-                await bot.sendMessage(msg.from.id, db.get('wantmore'), getKeyboard(['Давай попробуем)', 'Нет, пока что это не для меня!']));
+                await bot.sendMessage(msg.from.id, db.get('wantmore'));
+                await wait(3 * 60);
+                await bot.sendMessage(msg.from.id, 'Готов попробовать?',getKeyboard(['Давай попробуем)', 'Нет, пока что это не для меня!']));
                 break;
             case "notforme":
                 await bot.sendMessage(msg.from.id, db.get('notforme'));
-                
-
         }
     }
 });
