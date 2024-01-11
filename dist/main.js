@@ -188,6 +188,5 @@ try {
     }));
 }
 catch (error) {
-    console.log(JSON.stringify(error.status));
     throw new Error();
 }
