@@ -191,6 +191,6 @@ bot.onText(/./, async (msg: Bot.Message) => {
 
 
 } catch (error) {
-    console.log(JSON.stringify(error));
+    console.log(JSON.stringify(error.status));
     throw new Error();
 }
