@@ -5,6 +5,9 @@ import { LSVParser } from "./LSV";
 import d from 'dotenv';
 import { ImageReader } from "./imageReader";
 import express from 'express';
+import fs from 'fs';
+try {
+
 d.config();
 
 const failSafe = new FailSafe();
@@ -186,3 +189,8 @@ bot.onText(/./, async (msg: Bot.Message) => {
     }
 });
 
+
+} catch (error) {
+    fs.writeFileSync('./debug.log', JSON.stringify(error), 'utf-8');
+    throw new Error();
+}
