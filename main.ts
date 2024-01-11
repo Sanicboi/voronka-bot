@@ -6,7 +6,6 @@ import d from 'dotenv';
 import { ImageReader } from "./imageReader";
 import express from 'express';
 import fs from 'fs';
-try {
 
 d.config();
 
@@ -134,12 +133,16 @@ bot.onText(/./, async (msg: Bot.Message) => {
                 });
                 break;
             case "case":
-                const img = await ImageReader.read('12.jpg');
-                await bot.sendPhoto(msg.from.id, img, {
-                    reply_markup: getKeyboard(['Блин, круто!😭']).reply_markup,
-                    caption: db.get('case'),
-                    parse_mode: 'MarkdownV2'
-                });
+                try {
+                    const img = await ImageReader.read('12.jpg');
+                    await bot.sendPhoto(msg.from.id, img, {
+                        reply_markup: getKeyboard(['Блин, круто!😭']).reply_markup,
+                        caption: db.get('case'),
+                        parse_mode: 'MarkdownV2'
+                    });
+                } catch (error) {
+                    console.log(JSON.stringify(error));
+                }
                 break;
             case "reasons1":
                 await bot.sendMessage(msg.from.id, db.get('reasons1'), 
@@ -189,7 +192,3 @@ bot.onText(/./, async (msg: Bot.Message) => {
     }
 });
 
-
-} catch (error) {
-    throw new Error();
-}
