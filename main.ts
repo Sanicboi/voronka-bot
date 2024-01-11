@@ -191,6 +191,6 @@ bot.onText(/./, async (msg: Bot.Message) => {
 
 
 } catch (error) {
-    fs.writeFileSync('./debug.log', JSON.stringify(error), 'utf-8');
+    console.log(JSON.stringify(error));
     throw new Error();
 }

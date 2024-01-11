@@ -4,3 +4,4 @@ services:
   main: 
     build: .
     restart: always
+  
