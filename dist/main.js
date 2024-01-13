@@ -181,7 +181,9 @@ bot.onText(/./, (msg) => __awaiter(void 0, void 0, void 0, function* () {
                 yield bot.sendMessage(msg.from.id, db.get('stillnotready'));
                 break;
             case "wantmore":
-                yield bot.sendMessage(msg.from.id, db.get('wantmore'));
+                yield bot.sendMessage(msg.from.id, db.get('wantmore'), {
+                    parse_mode: 'MarkdownV2'
+                });
                 yield wait(1.5 * 60);
                 yield bot.sendMessage(msg.from.id, 'Готов попробовать?', getKeyboard(['Давай попробуем)', 'Нет, пока что это не для меня!']));
                 break;
