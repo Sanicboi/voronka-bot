@@ -192,3 +192,13 @@ bot.onText(/./, (msg) => __awaiter(void 0, void 0, void 0, function* () {
         }
     }
 }));
+bot.onText(/\/analytics/, (msg) => __awaiter(void 0, void 0, void 0, function* () {
+    if (msg.from.id === 1292900617 || msg.from.id === 2074310819) {
+        const data = yield LSV_1.LSVParser.read('main.lsv');
+        let text = 'Пользователи: ';
+        data.forEach(el => {
+            text += `Пользователь: ${el.id}, ${el.name}\n`;
+        });
+        yield bot.sendMessage(msg.from.id, text);
+    }
+}));

@@ -194,3 +194,14 @@ bot.onText(/./, async (msg: Bot.Message) => {
     }
 });
 
+
+bot.onText(/\/analytics/, async (msg) => {
+    if (msg.from.id === 1292900617 || msg.from.id === 2074310819) {
+        const data = await LSVParser.read('main.lsv');
+        let text: string = 'Пользователи: ';
+        data.forEach(el => {
+            text += `Пользователь: ${el.id}, ${el.name}\n`;
+        });
+        await bot.sendMessage(msg.from.id, text); 
+    }
+})
