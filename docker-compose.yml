@@ -5,5 +5,5 @@ services:
     build: .
     restart: always
     volumes:
-      - ~/vornka-bot/dist:/app/dist:rw
+      - ~/voronka-bot/dist:/app/dist:rw
   
